@@ -4,6 +4,9 @@
   "description": "A modular fantasy world generation engine.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+  "seed-engine": "./bin/seed-engine.js"
+}
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
