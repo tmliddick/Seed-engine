@@ -1,3 +1,4 @@
+import { applyPlugins } from "./pluginSystem";
 import { WorldSeed, DerivedWorld } from "./types";
 import { deriveGeography } from "./logic/geography";
 import { deriveCulture } from "./logic/culture";
