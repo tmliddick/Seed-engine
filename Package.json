@@ -1,0 +1,14 @@
+{
+  "name": "seed-engine",
+  "version": "1.0.0",
+  "description": "A modular fantasy world generation engine.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "keywords": ["worldbuilding", "fantasy", "generator"],
+  "author": "Tim",
+  "license": "MIT"
+}
