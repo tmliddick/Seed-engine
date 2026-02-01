@@ -1,30 +1,10 @@
-import { generateWorld } from "../dist/index.js";
+import { generateGoldenWorld } from "../dist/examples/goldenWorld.js";
 
 document.getElementById("generate").onclick = () => {
-  const seed = {
-    identity: {
-      kingdomName: "Demo",
-      culturalFlavor: "Forest",
-      namingStyle: "soft-vowel"
-    },
-    environment: {
-      biome: "temperate-forest",
-      climate: "humid"
-    },
-    magic: {
-      principle: "nature",
-      intensity: "moderate"
-    },
-    society: {
-      government: "council",
-      primaryTension: "prophecy"
-    },
-    mythic: {
-      originTheme: "primordial-forest",
-      legendaryArchetype: "prophet"
-    }
-  };
+  const world = generateGoldenWorld();
+  const output = document.getElementById("output");
+  const map = document.getElementById("map");
 
-  const world = generateWorld(seed);
-  document.getElementById("output").textContent = JSON.stringify(world, null, 2);
+  output.textContent = JSON.stringify(world, null, 2);
+  map.textContent = world.maps?.asciiMini || "(no map)";
 };
