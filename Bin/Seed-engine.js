@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { generateWorld } from "../dist/index.js";
+import { generateGoldenWorld } from "../dist/examples/goldenWorld.js";
 import fs from "fs";
 
 const args = process.argv.slice(2);
@@ -19,12 +20,23 @@ function parseArgs() {
 
 const opts = parseArgs();
 
-if (opts.help) {
+if (opts.help || args.length === 0) {
   console.log(`
 Seed Engine CLI
-Usage:
-  seed-engine create --seed <file> --output <file> --format json|yaml
+
+Commands:
+  seed-engine create --seed <file> [--output <file>] [--format json|yaml]
+  seed-engine example
+
+Options:
+  --plugins all|none|comma,separated,list   (currently plugins are wired in golden example)
 `);
+  process.exit(0);
+}
+
+if (args[0] === "example") {
+  const world = generateGoldenWorld();
+  console.log(JSON.stringify(world, null, 2));
   process.exit(0);
 }
 
@@ -42,7 +54,7 @@ if (args[0] === "create") {
   const world = generateWorld(seed);
 
   if (format === "yaml") {
-    const yaml = require("yaml");
+    const yaml = await import("yaml");
     fs.writeFileSync(outputFile, yaml.stringify(world));
   } else {
     fs.writeFileSync(outputFile, JSON.stringify(world, null, 2));
